@@ -31,12 +31,8 @@ require 'rails_helper'
         fill_in "Details", with: "Testing again"
         click_button "Create Task"
         visit tasks_path
-        click_on 'Destroy'
-        # expect(message).to have_content "Are you sure?"
-        # click_on "OK"
-        # expect(page).to have_content "Task was successfully destroyed."
-        # accept_alert do
-        # click_on "Destroy"
+        click_on 'Delete'
+
        end
      end
   end
@@ -79,10 +75,83 @@ require 'rails_helper'
  describe 'list display function' do
     context 'When tasks are arranged in descending order of creation and time'do
       it 'new task is displayed on top' do
-      task=Task.create(name: "joshua", Details: "we are going out")
+      task=Task.create(name: "hobies", Details: "sports", Deadline: "2021/1/1")
       visit tasks_path
-      tasks = Task.all.order("created_at DESC")
+      click_on 'Deadline'
+      tasks = Task.all.order("Task DESC")
    end
   end
  end
+ describe 'detailed display function'  do
+    context 'if the transition to any task detail screen'  do
+      it 'Register task and sort with Deadline' do
+       visit new_task_path
+       fill_in "Name", with: "Try"
+       fill_in "Details", with: "Testing"
+       fill_in "Deadline", with: "2021/1/4"
+       click_button "Create Task"
+       visit tasks_path
+       click_on 'Deadline'
+       tasks=Task.all.order("Deadline DESC")
+     end
+    end
+  end
+  describe 'detailed display function'  do
+     context 'if the transition to any task detail screen'  do
+       it 'Register task and sort by priority' do
+        visit new_task_path
+        task=Task.create(name: "hobies", Details: "sports", Deadline: "2021/1/1", status:"Unstarted", priority: "Medium")
+        visit tasks_path
+        click_on 'priority'
+        tasks=Task.all.order("priority DESC")
+      end
+     end
+   end
+     describe 'list display function' do
+        context 'When tasks are arranged in descending order of creation and time'do
+        it 'display task with status and priority' do
+        task=Task.create(name: "hobies", Details: "sports", Deadline: "2021/1/1", status:"Unstarted", priority: "Medium")
+        visit tasks_path
+        expect(page).to have_content 'Unstarted'
+        expect(page).to have_content 'Medium'
+       end
+      end
+     end
+
+     describe 'list display function' do
+          context 'When tasks are arranged in descending order of creation and time'do
+          it 'Search by status' do
+          task=Task.create(name: "hobies", Details: "sports", Deadline: "2021/1/1", status:"Unstarted", priority: "Medium")
+          visit tasks_path
+          fill_in 'Status', with: "Unstarted"
+          click_on "Search"
+          expect(page).to have_content 'Unstarted'
+       end
+      end
+     end
+
+     describe 'list display function' do
+          context 'When tasks are arranged in descending order of creation and time'do
+          it 'Search by name' do
+          task=Task.create(name: "hobies", Details: "sports", Deadline: "2021/1/1", status:"Unstarted", priority: "Low")
+          visit tasks_path
+          fill_in 'Name', with: "hobies"
+          click_on "Search"
+          expect(page).to have_content 'Low'
+       end
+      end
+     end
+     describe 'list display function' do
+          context 'When tasks are arranged in descending order of creation and time'do
+          it 'Search by both status and name' do
+          task=Task.create(name: "hobies", Details: "sports", Deadline: "2021/1/1", status:"Unstarted", priority: "Low")
+          visit tasks_path
+          fill_in 'Name', with: "hobies"
+          fill_in 'Status', with: "Unstarted"
+          click_on "Search"
+          expect(page).to have_content 'hobies'
+          expect(page).to have_content 'Unstarted'
+       end
+      end
+     end
 end

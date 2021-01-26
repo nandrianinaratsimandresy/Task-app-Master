@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
   default_scope { order(created_at: :desc)}
-  validates :name, presence: true, uniqueness: true, length: { minimum: 3,maximum:12}
-  validates :Details, presence: true, length: { minimum: 3, maximum: 20}
+  validates :name, presence: true, uniqueness: true, length: { maximum:50}
+  validates :Details, presence: true, length: { maximum: 21}
 end

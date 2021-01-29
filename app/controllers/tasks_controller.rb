@@ -1,45 +1,48 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-   PER = 3
-  # GET /tasks
-  # GET /tasks.json
+  before_action :current_user
+  before_action :authenticate_user
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :logged_in?
+
+  PER = 3
+
   def index
-    @q=Task.ransack(params[:q])
-    @tasks= @q.result.page(params[:page]).per(PER)
+    @q=current_user.tasks.ransack(params[:q])
+    @tasks = @q.result(distinct: true).page(params[:page]).per(2)
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
+
   def show
+
   end
 
-  # GET /tasks/new
+
   def new
-    @task = Task.new
-  end
-
-  # GET /tasks/1/edit
-  def edit
-  end
-
-  # POST /tasks
-  # POST /tasks.json
-  def create
-    @task = Task.new(task_params)
-
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if params[:back]
+      @task = Task.new(task_params)
+    else
+      @task = Task.new
     end
   end
 
-  # PATCH/PUT /tasks/1
-  # PATCH/PUT /tasks/1.json
+
+  def edit
+
+  end
+
+
+
+  def create
+    @task = Task.new(task_params)
+    @task.user_id=current_user.id
+      if @task.save
+        redirect_to tasks_path, notice: "New task created!"
+       else
+         render :new
+       end
+    end
+
   def update
     respond_to do |format|
       if @task.update(task_params)
@@ -63,12 +66,19 @@ class TasksController < ApplicationController
 
   private
 
-    def set_task
-      @task = Task.find(params[:id])
-    end
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
 
-    def task_params
-      params.require(:task).permit(:name, :Details,:Deadline, :status, :priority)
+  def task_params
+    params.require(:task).permit(:name, :Details,:Deadline, :status, :priority,:user_id, :id)
+  end
+
+  def require_same_user
+    if current_user != @task.user && !current_user.admin?
+      flash[:alert] = "You can only edit or delete your own article"
+      redirect_to @task
     end
+   end
 end

@@ -1,0 +1,26 @@
+
+<h6 class="text-center mt-4">Login Here to Register Tasks</h6>
+<div class="mx-auto" style="width: 200px;">
+  <div class="user-login">
+    <%=form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+      <form>
+      <div class="form-grp">
+        <label for="email"><%= f.label :email %></label>
+        <div class="col-xs-6"><%= f.email_field :email,placeholder: 'email' %></div>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-grp">
+        <label for="password">Password</label>
+        <div class="col-xs-6"> <%=f.password_field :password, placeholder: 'password' %></div>
+      </div>
+       <br>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <br>
+    <%= f.submit "Log-in" , class: "btn btn-primary"  %>
+    </form>
+  <%end%>
+</div>
+</div>

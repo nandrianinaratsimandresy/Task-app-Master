@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-10">
-     <%=form_with(model: task, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |form| %>
+     <%=form_with(model: task, class: "shadow p-3 mb-3  rounded", local: true) do |form| %>
       <% if task.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -49,7 +49,7 @@
     <div class="form-group row justify-content-center">
       <div class="form-btn">
         <%=form.submit class: 'action-button' %>
-         <%=link_to 'Back/Cancel', tasks_path, class: 'action-button' %>
+         <%=link_to 'Back/Cancel', tasks_path, class: 'action-back' %>
       </div>
     </div>
   <%end%>

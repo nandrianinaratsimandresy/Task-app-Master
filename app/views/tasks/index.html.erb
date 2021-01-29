@@ -1,46 +1,53 @@
-<p id="notice"><%= notice %></p>
-<h3>Tasks List</h3>
-<br>
-<span class="search"><%=search_form_for @q do |f| %></span>
-<span class="search"><%=f.label :Task_name %></span>
-<span class="search"><%=f.search_field :name_cont, placeholder: 'Name' %></span>
-<span class="search"><%=f.label :Task_tatus %></span>
-<span class="search"><%=f.search_field :status_cont, placeholder: 'Status' %></span>
-<span><%=f.submit class: 'action-button' %></span>
-<%end %>
-<br>
-<span><%= link_to 'Register New Task', new_task_path,class:"btn btn-outline-primary btn-sm"%></span>
-<br>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Details</th>
-      <th class="sort_link"><%=sort_link(@q, :Deadline, 'Deadline', default_order: :desc)%></th>
-      <th>RegistrationDate</th>
-      <th>status</th>
-      <th class="sort_link"><%=sort_link(@q, :priority, 'priority', default_order: :desc)%></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="display justify-content-center">
+   <!-- <div class="col-12"> -->
+
+  <p id="notice"><%= notice %></p>
+  <h4>Tasks List</h4>
+  <br>
+  <span class="search"><%=search_form_for @q do |f| %></span>
+  <span class="search"><%=f.label :Task_name %></span>
+  <span class="search"><%=f.search_field :name_cont,placeholder: 'Name' %></span>
+  <span class="search"><%=f.label :status %></span>
+  <span class="search"><%=f.search_field :status_cont, placeholder: 'Status' %></span>
+  <span class="search"><%=f.submit class: 'search-button' %></span>
+  <%end %>
+  <br>
+  <span><%= link_to 'Register New Task', new_task_path,class:"btn btn-outline-primary btn-sm"%></span>
+  <br>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Details</th>
+        <th class="sort_link"><%=sort_link(@q, :Deadline, 'Deadline', default_order: :desc)%></th>
+        <th>RegistrationDate</th>
+        <th>status</th>
+        <th class="sort_link"><%=sort_link(@q, :priority, 'priority', default_order: :desc)%></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
 
   <% @tasks.each do |task| %>
-      <tr>
-        <td><%=task.name %></td>
-        <td><%=task.Details %></td>
-        <td><%=task.Deadline%></td>
-        <td><%=task.created_at%></td>
-        <td><%=task.status %></td>
-        <td><%=task.priority%></td>
-        <td><%= link_to 'Show', task, class:"btn btn-outline-primary btn-sm"%></td>
-        <td><%= link_to 'Edit', edit_task_path(task),class:"btn btn-outline-success btn-sm" %></td>
-        <td><%= link_to "Delete", task,class:"btn btn-outline-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<div class="page">
-  <%=paginate @tasks %>
+        <tr>
+
+          <td><%=task.name %></td>
+          <td><%=task.Details %></td>
+          <td><%=task.Deadline%></td>
+          <td><%=task.created_at%></td>
+          <td><%=task.status %></td>
+          <td><%=task.priority%></td>
+          <td><%= link_to 'Show', task, class:"btn btn-outline-primary btn-sm"%></td>
+          <td><%= link_to 'Edit', edit_task_path(task),class:"btn btn-outline-success btn-sm" %></td>
+          <td><%= link_to "Delete", task,class:"btn btn-outline-danger btn-sm", method: :delete, data: {confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    
+    </tbody>
+  </table>
+  <br>
+
+  <a class="nav-link" href="#"><%=paginate @tasks, class: "nav-link" %></a>
+
+</div>
 </div>

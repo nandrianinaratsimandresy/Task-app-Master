@@ -3,6 +3,6 @@ FactoryBot.define do
     name {"MyString"}
     Details {"lets chat"}
     Deadline {"2021-1-1"}
-    
+
   end
 end

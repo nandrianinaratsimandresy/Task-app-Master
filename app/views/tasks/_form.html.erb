@@ -1,27 +1,58 @@
-<%= form_with(model: task, local: true) do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
-      <ul>
-      <% task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+     <%=form_with(model: task, class: "shadow p-3 mb-3  rounded", local: true) do |form| %>
+      <% if task.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+          <ul>
+          <% task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <%end%>
+          </ul>
+        </div>
+      <%end%>
+    <div class="form-group row">
+        <%=form.label :Name, class: "col-2 col-form-label text-light" %>
+      <div class="col-10">
+        <%=form.text_field :name, rows: 1, placeholder: "Name" %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <div class="form-group row">
+        <%=form.label :Details, class: "col-2 col-form-label text-light" %>
+      <div class="col-10">
+        <%=form.text_field :Details, rows: 1, placeholder: "Details" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :Details %>
-    <%= form.text_field :Details %>
-  </div>
+    <div class="form-group row">
+        <%=form.label :Deadline, class: "col-2 col-form-label text-light" %>
+      <div class="col-10">
+        <%=form.text_field :Deadline, rows: 1, placeholder: "Deadline" %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="form-group row">
+        <%= form.label :status, class: "col-2 col-form-label text-light" %>
+       <div class="col-10">
+          <%= form.select :status, ['Unstarted','Started','In-progress','Completed']%>
+       </div>
+    </div>
+
+    <div class="form-group row">
+        <%= form.label :priority, class: "col-2 col-form-label text-light" %>
+       <div class="col-10">
+         <%= form.select :priority, ['Low','Medium','High' ]%>
+       </div>
+    </div>
+    <div class="form-group row justify-content-center">
+      <div class="form-btn">
+        <%=form.submit class: 'action-button' %>
+         <%=link_to 'Back/Cancel', tasks_path, class: 'action-back' %>
+      </div>
+    </div>
+  <%end%>
   </div>
-<% end %>
+ </div>
+</div>

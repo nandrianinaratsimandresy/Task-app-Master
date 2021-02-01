@@ -1,0 +1,37 @@
+<div class="col-12">
+ <div class="container">
+  <div class="form-login box text-center">
+   <span style="font-size:15px">
+  <%= form_with(model: user, local: true) do |form| %>
+    <% if user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p><%= form.text_field :name, placeholder: 'name', class: "log-in-tag" %></p>
+        <br>
+        <p><%= form.email_field :email, placeholder: 'email', class: "log-in-tag" %></p>
+        <br>
+        <p><%= form.password_field :password, placeholder: 'password', class: "log-in-tag" %></p>
+        <br>
+        <p><%= form.password_field :password_confirmation, placeholder: 'password_confirmation', class: "log-in-tag" %></p>
+        <br>
+        <div class="row justify-content-center">
+          <div class="col-2">
+           <p><%= form.file_field :favpic, placeholder: 'favpic', class: "log-in-tag" %></p>
+          </div>
+          </div>
+          </span>
+        <%= form.submit "Register user" , class: "btn btn-primary"  %>
+        <p>Already have an account？<%= link_to 'Log-in', new_session_path %></p>
+      </div>
+      <% end %>
+    </div>
+   </div>

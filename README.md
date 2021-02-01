@@ -1,23 +1,26 @@
-# Task-app-Master
+## Task model
+| Column name | Data type |
+|-------------|-----------|
+|  name       | string    |
+|  Details    | string    |
+|  Completed  | boolean   |
+|  Duedate    | date      |
+|  user_id    | integer   |
 
-## User Table
-| Column          | Data Type |
-|-----------------|-----------|
-| user_id         | integer   |
-| name            | string    |
-| email           | string    |
-| password_digest | string    |
-| timestamp       | timestamp |
 
-## Task Table
-| Column    | Data type |
-|-----------|-----------|
-| task_id   | integer   |
-| title     | string    |
-| content   | string    |
-| deadline  | date      |
-| status    | string    |
-| priority  | string    |
-| creator   | string    |
-| user_id   | integer   |
-| timestamp | timestamp |
+
+## Label model
+| Column name | Data type |
+|-------------|-----------|
+|task_id      |integer    |
+|             |           |
+|             |           |
+
+## User model
+| Column name | Data type |
+|-------------|-----------|
+| name        |string     |
+| email       |string     |
+| password    |string     |
+| admin_user  |string     |
+|             |           |

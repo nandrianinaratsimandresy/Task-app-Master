@@ -1,0 +1,36 @@
+<div class="mx-auto" style="width: 800px; mt-30">
+  <div class="user-info">
+      <h6 class="text-center">Management Panel</h6>
+      <br>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Admin status</th>
+            <th>Email</th>
+            <th>No. of tasks</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+       <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%=user.id %></td>
+              <td><%=user.name %></td>
+              <td><%= user.admin? ? "Yes":"No" %></td>
+              <td><%=user.email %></td>
+              <td><%=user.tasks.length%></td>
+              <td><%= link_to 'Show', admin_user_path(user.id), class:"btn btn-outline-primary btn-sm" %></td>
+              <td><%= link_to 'Edit', edit_admin_user_path(user.id), class:"btn btn-outline-success btn-sm" %></td>
+              <td><%= link_to 'Delete user', admin_user_path(user.id), class:"btn btn-outline-danger btn-sm", method: :delete, data: {confirm: 'Are you sure?'} %>
+            </tr>
+           <%end%>
+        </tbody>
+      </table>
+      <br>
+      <%=link_to 'New User', new_admin_user_path, class: "nav-link" %>
+    <br>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+
+<% flash.each do |key, value| %>
+<%= content_tag(:div, value, class: "#{key}") %>
+<% end %>
+  <div class="container-fluid">
+    <nav class="navbar  navbar-expand-sm">
+      <a class="navbar-brand" href=""><%=link_to "Project Management", tasks_path, class: "navbar-brand"%></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#"><%=link_to "Tasks", tasks_path, class: "nav-link"%></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><%= link_to 'Labels', new_label_path, class: "nav-link" %></a>
+          </li>
+          <li class="nav-item">
+            <% if logged_in? %>
+            <% if current_user.admin? %>
+            <a class="nav-link" href="#"><%= link_to 'Management', admin_users_path, class: "nav-link" %>|</a>
+            <%end %>
+            <%end %>
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contacts</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+      <% if logged_in? %>
+      <a class="nav-link"><%= "(Admin)" if current_user.admin? %></a>
+      <%= link_to current_user.name, user_path(current_user.id),class: "nav-link" %>
+      <%= link_to "Logout", session_path(current_user.id),class: "nav-link", method: :delete %>
+     <% else %>
+      <%= link_to "Sign up", new_user_path, class: "nav-link" %>
+      <%= link_to "Login", new_session_path,class: "nav-link" %>
+    <% end %>

@@ -2,3 +2,173 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 // @import "bootstrap";
+//
+
+html{margin: 0;
+
+}
+
+body{
+
+}
+.checkit{ margin-top: 23px;
+          margin-right: 24%;
+
+
+}
+.box{margin-left: 20%;
+
+}
+.display{margin-left: 23%;
+
+}
+.show-info{margin-left: 400px;
+           margin-top: 100px;
+           text-align: center;
+
+}
+.user-login{margin-top: 60px;
+
+}
+.user-info{
+  padding-left: 10px;
+  margin-top: 60px;
+
+}
+.container-fluid{margin: 0;
+  padding: 0;
+
+}
+#title{
+  color: black;
+}
+.form{padding-left: 0;
+
+}
+.nav-link{color: black;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 16px;
+  padding: 0;
+}
+.nav-login{
+  margin: 0;
+  width: 15%;
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+}
+
+.nav-item{
+  padding: 0 15px;
+  color: #fff;
+
+}
+
+.navbar{padding: 2rem 0;
+
+}
+.navbar-brand{color: black;
+    display: inline-block;
+    text-decoration: none;
+    padding: 0;
+}
+
+.nav-link:hover{
+  background-color: #cdd0cb;
+  color: white;
+  text-decoration: none;
+}
+.navbar-brand:hover{
+  background-color: #cdd0cb;
+  color: white;
+}
+
+
+.page{background-color: #cdd0cb;
+  color: #fff;
+  font-size: inherit;
+  text-decoration: none;
+
+}
+.page:hover{background-color: #cdd0cb;
+ color: white;
+ text-decoration: none;
+
+}
+
+.search{display: inline-block;
+}
+
+.form-group{
+  padding-left: 27%;
+}
+
+*:focus {
+    outline: none;
+}
+
+.sort_link:hover{
+  background-color: #59886b;
+  color: white;
+  text-decoration: none;
+
+}
+
+.sort_link{
+  color: #59886b;
+  font-size: inherit;
+  text-decoration: none;
+
+}
+
+.search-button {
+  background-color: #59886b;
+  color: #fff;
+  font-size: inherit;
+  text-decoration: none;
+  margin: auto 15px;
+}
+.search-button:hover {
+  background-color: #fff;
+  border-color:#59886b;
+  color: #59886b;
+}
+
+.action-button {
+  width: 50%;
+  background-color: #59886b;
+  border: thin solid transparent;
+  color: #fff;
+  font-size: inherit;
+  text-decoration: none;
+  margin-bottom: 20px;
+  margin-left: 1px;
+}
+
+.action-button:hover {
+  background-color: #fff;
+  border-color:#59886b;
+  color: #59886b;
+}
+.form-btn{margin-right: 45%;
+          color: #fff;
+          display: inline-block;
+          text-align: center;
+}
+.action-back {
+  color: white;
+  width: 15%;
+  background-color: #59886b;
+  border: thin solid transparent;
+  font-size: 0.95rem;
+  margin: auto 15px;
+  text-decoration: none;
+}
+.action-back:hover {
+  background-color: white;
+  border: thin solid transparent;
+  color:#59886b;
+  border-color:#59886b;
+}

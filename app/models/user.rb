@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
+  has_many :labels, dependent: :destroy
   before_destroy :before_admin_destroy
   before_update :before_admin_update
   before_validation{email.downcase!}

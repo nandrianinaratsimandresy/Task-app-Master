@@ -10,6 +10,7 @@ class TasksController < ApplicationController
   def index
     @q=current_user.tasks.ransack(params[:q])
     @tasks = @q.result(distinct: true).page(params[:page]).per(2)
+
   end
 
 
@@ -72,7 +73,7 @@ class TasksController < ApplicationController
 
 
   def task_params
-    params.require(:task).permit(:name, :Details,:Deadline, :status, :priority,:user_id, :id)
+    params.require(:task).permit(:name, :Details,:Deadline, :status, :priority,:user_id, :id, { label_ids: [] })
   end
 
   def require_same_user

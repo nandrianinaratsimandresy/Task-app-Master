@@ -10,6 +10,12 @@
     <strong>Details:</strong>
     <%= @task.Details %>
   </p>
+  <p>
+    <strong>Label:</strong>
+    <%@task.labels.each do |label| %>
+      [<%=label.name %>]
+      <%end %>
+  </p>
 
   <p>
     <strong>Deadline:</strong>

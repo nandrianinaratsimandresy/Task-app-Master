@@ -48,16 +48,18 @@ class Admin::UsersController < ApplicationController
     end
   end
   def destroy
-  user = User.find(params[:id])
-  if (current_user == user) && (current_user.admin?)
-    flash[:error] = "Can not delete own admin account!"
-    redirect_to admin_users_path
-   else
-    user.destroy
-    flash[:success] = "User destroyed."
-   end
-   return admin_users_path
- end
+      user = User.find(params[:id])
+      if (current_user == user) && (current_user.admin?)
+      flash[:error] = "You cannot delete own admin account!"
+      redirect_to admin_users_path
+      elsif @user.destroy
+        flash[:success] = "user deleted!"
+        redirect_to admin_users_path
+      else
+        flash[:danger] = "user not deleted!"
+        redirect_to admin_users_path
+      end
+    end
 
 
   private

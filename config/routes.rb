@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :labels
   resources :sessions
   resources :users, only:[:new, :create, :show]
   resources :tasks
